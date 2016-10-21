@@ -76,7 +76,7 @@ void run(int nx, int nz, const user_params_t &user_params)
     using concurr_t = concurr::serial<
       solver_t, 
       bcond::cyclic, bcond::cyclic,
-      bcond::rigid,  bcond::rigid 
+      bcond::cyclic,  bcond::cyclic
     >;
     slv.reset(new concurr_t(p));
 
@@ -88,7 +88,7 @@ void run(int nx, int nz, const user_params_t &user_params)
     using concurr_t = concurr::boost_thread<
       solver_t, 
       bcond::cyclic, bcond::cyclic,
-      bcond::rigid,  bcond::rigid 
+      bcond::cyclic,  bcond::cyclic
     >;
     slv.reset(new concurr_t(p));
 
