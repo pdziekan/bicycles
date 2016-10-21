@@ -170,7 +170,7 @@ void run(int nx, int ny, int nz, const user_params_t &user_params)
 struct ct_params_common : ct_params_default_t
 {
   using real_t = setup::real_t;
-  enum { opts = opts::iga | opts::fct };  // TODO: reenable nug once it works in 3D
+  enum { opts = opts::nug | opts::iga | opts::fct };  // TODO: reenable nug once it works in 3D
   enum { rhs_scheme = solvers::trapez }; 
   enum { prs_scheme = solvers::cr };
   enum { vip_vab = solvers::expl };
