@@ -12,7 +12,8 @@
 #include "setup.hpp"
 //#include "DYCOMS98.hpp"
 //#include "ThermalGrabowskiClark99.hpp"
-#include "PBL.hpp"
+//#include "PBL.hpp"
+#include "DryThermal.hpp"
 #include "opts_lgrngn.hpp"
 #include "panic.hpp"
 #include <map>
@@ -169,7 +170,7 @@ void run(int nx, int ny, int nz, const user_params_t &user_params)
 struct ct_params_common : ct_params_default_t
 {
   using real_t = setup::real_t;
-  enum { opts = opts::nug | opts::iga | opts::fct };  // TODO: reenable nug once it works in 3D
+  enum { opts = opts::iga | opts::fct };  // TODO: reenable nug once it works in 3D
   enum { rhs_scheme = solvers::trapez }; 
   enum { prs_scheme = solvers::cr };
   enum { vip_vab = solvers::expl };
@@ -278,13 +279,13 @@ int main(int argc, char** argv)
       struct ct_params_t : ct_params_common
       {
         enum { n_dims = 2 };
-    	enum { n_eqns = 4 };
+    	enum { n_eqns = 3 };
         struct ix { enum {
-          u, w, th, rv, 
+          u, w, th, 
           vip_i=u, vip_j=w, vip_den=-1
         }; };
       };
-//      run<slvr_lgrngn<ct_params_t>>(nx, nz, user_params);
+      run<slvr_lgrngn<ct_params_t>>(nx, nz, user_params);
     }
     else if (micro == "lgrngn" && ny > 0) // 3D super-droplet
     {
@@ -297,7 +298,7 @@ int main(int argc, char** argv)
           vip_i=u, vip_j=v, vip_k=w, vip_den=-1
         }; };
       };
-      run<slvr_lgrngn<ct_params_t>>(nx, ny, nz, user_params);
+//      run<slvr_lgrngn<ct_params_t>>(nx, ny, nz, user_params);
     }
     else throw
       po::validation_error(

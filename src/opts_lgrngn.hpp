@@ -33,11 +33,11 @@ void setopts_micro(
   // output variables
   rt_params.outvars = {
     // <TODO>: make it common among all three micro?
-    {solver_t::ix::th, {"tht", "[K]"}},
+    {solver_t::ix::th, {"th", "[K]"}},
 //    {solver_t::ix::rv, {"rv", "[kg kg-1]"}},
-    {solver_t::ix::u, {"u", "[m/s]"}},
-    {solver_t::ix::v, {"v", "[m/s]"}},
-    {solver_t::ix::w, {"w", "[m/s]"}}
+//    {solver_t::ix::u, {"u", "[m/s]"}},
+//    {solver_t::ix::v, {"v", "[m/s]"}},
+//    {solver_t::ix::w, {"w", "[m/s]"}}
     // </TODO>
   };
 }
