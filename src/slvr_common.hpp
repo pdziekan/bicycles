@@ -24,16 +24,9 @@ class slvr_common : public
   real_t prec_vol;
   std::ofstream f_prec;
   
-  // spinup stuff
-  virtual bool get_rain() = 0;
-  virtual void set_rain(bool) = 0;
 
   void hook_ante_loop(int nt) 
   {
-    if (spinup > 0)
-    {
-      set_rain(false);
-    }
 
     parent_t::hook_ante_loop(nt); 
 
@@ -44,11 +37,6 @@ class slvr_common : public
 
   void hook_ante_step()
   {
-    if (spinup != 0 && spinup == this->timestep)
-    {
-      // turn autoconversion on only after spinup (if spinup was specified)
-      set_rain(true);
-    }
     parent_t::hook_ante_step(); 
   }
 
